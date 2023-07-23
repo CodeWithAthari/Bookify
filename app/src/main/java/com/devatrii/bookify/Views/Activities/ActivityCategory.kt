@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.devatrii.bookify.Adapters.CategoryAdapter
 import com.devatrii.bookify.Models.BooksModel
+import com.devatrii.bookify.Utils.SpringScrollHelper
 import com.devatrii.bookify.databinding.ActivityCategoryBinding
 
 
@@ -21,6 +22,9 @@ class ActivityCategory : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             mRVCats.adapter = adapter
+            SpringScrollHelper().apply {
+                attachToRecyclerView(mRVCats)
+            }
             val booksList = intent.getSerializableExtra("book_list") as ArrayList<BooksModel>
             val title = intent.getStringExtra("cat_title").toString()
             supportActionBar?.title = title

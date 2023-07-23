@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.abs
 
 // Created by Kaustubh Patange at 02-02-2021
-// Modified bt Dev Atrii at 23-07-2023
+// Modified by Dev Atrii at 23-07-2023
 
 /**
  * Usage: ```SpringScrollHelper().attachToRecyclerView(recyclerView)```
@@ -19,6 +19,7 @@ class SpringScrollHelper {
      *
      * Passing null will remove it.
      */
+
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
         if (recyclerView != null) {
             this.recyclerView = recyclerView
@@ -28,11 +29,15 @@ class SpringScrollHelper {
         }
     }
 
+    fun setMaxVelocity(maxVelocity: Float) {
+        MAX_VELOCITY = maxVelocity
+    }
+
     private var recyclerView: RecyclerView? = null
     private var flingVx: Int = 0
     private var flingVy: Int = 0
-    private val VELOCITY = 10f
-    private val TAG = "SpringScrollHelper"
+    private var MAX_VELOCITY = 2f
+
     private fun setup() {
         recyclerView?.onFlingListener = recyclerViewFlingListener
         recyclerView?.addOnScrollListener(recyclerViewScrollListener)
@@ -46,7 +51,6 @@ class SpringScrollHelper {
 
     private val recyclerViewFlingListener = object : RecyclerView.OnFlingListener() {
         override fun onFling(velocityX: Int, velocityY: Int): Boolean {
-            Log.i(TAG, "Fling X: $velocityX - Fling Y: $velocityY")
             flingVx = velocityX
             flingVy = velocityY
             return false
@@ -95,29 +99,11 @@ class SpringScrollHelper {
                         recyclerView.pivotX = 0f
                     }
                 }
-                Log.i(
-                    TAG,
-                    "onScrollStateChanged: computeHorizontalScrollOffset: ${recyclerView.computeHorizontalScrollOffset()}"
-                )
-                Log.i(
-                    TAG,
-                    "onScrollStateChanged: computeHorizontalScrollRange: ${recyclerView.computeHorizontalScrollRange()}"
-                )
-                Log.i(
-                    TAG,
-                    "onScrollStateChanged: Current Offset: $currentOffset | Total Offset $totalOffset"
-                )
-                Log.i(
-                    TAG,
-                    "onScrollStateChanged: recycledViewHeight: $recycledViewHeight | recycledViewWidth $recycledViewWidth"
-                )
+
                 if (currentOffset == totalOffset || currentOffset == 0) {
                     val anim = SpringAnimation(recyclerView, property, 1f)
                     // You can set other animation parameters like stiffness or damping ratio, I'm leaving it default.
-                    Log.i(TAG, "onScrollStateChanged: velocity: $velocity")
-                    anim.setStartVelocity(velocity.coerceAtMost(VELOCITY)).apply {
-
-                    }.start()
+                    anim.setStartVelocity(velocity.coerceAtMost(MAX_VELOCITY)).start()
                 }
             }
         }

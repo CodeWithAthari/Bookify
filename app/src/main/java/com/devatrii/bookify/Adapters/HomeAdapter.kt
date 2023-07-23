@@ -59,7 +59,9 @@ class HomeAdapter(val list: ArrayList<HomeModel>, val context: Context) :
             layoutManager = linearLayoutManager
 
             setRecycledViewPool(mViewPool)
-            SpringScrollHelper().attachToRecyclerView(this)
+            SpringScrollHelper().apply {
+                attachToRecyclerView(this@setupChildRv)
+            }
         }
     }
 
