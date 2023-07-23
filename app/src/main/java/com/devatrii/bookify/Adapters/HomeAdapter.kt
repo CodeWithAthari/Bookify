@@ -3,18 +3,23 @@ package com.devatrii.bookify.Adapters
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.devatrii.bookify.Views.Activities.ActivityCategory
+import androidx.recyclerview.widget.RecyclerView.OnFlingListener
 import com.devatrii.bookify.Models.BooksModel
 import com.devatrii.bookify.Models.HomeModel
+import com.devatrii.bookify.Utils.SpringScrollHelper
 import com.devatrii.bookify.Utils.loadOnline
+import com.devatrii.bookify.Views.Activities.ActivityCategory
 import com.devatrii.bookify.Views.Activities.DetailsActivity
 import com.devatrii.bookify.databinding.ItemBodBinding
 import com.devatrii.bookify.databinding.ItemHomeBinding
+import kotlin.math.abs
+import kotlin.math.sign
 
 const val LAYOUT_HOME = 0
 const val LAYOUT_BOD = 1
@@ -54,6 +59,7 @@ class HomeAdapter(val list: ArrayList<HomeModel>, val context: Context) :
             layoutManager = linearLayoutManager
 
             setRecycledViewPool(mViewPool)
+            SpringScrollHelper().attachToRecyclerView(this)
         }
     }
 
