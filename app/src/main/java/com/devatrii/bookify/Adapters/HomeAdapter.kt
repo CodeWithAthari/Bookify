@@ -1,15 +1,18 @@
 package com.devatrii.bookify.Adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devatrii.bookify.Views.Activities.ActivityCategory
 import com.devatrii.bookify.Models.BooksModel
 import com.devatrii.bookify.Models.HomeModel
 import com.devatrii.bookify.Utils.loadOnline
+import com.devatrii.bookify.Views.Activities.DetailsActivity
 import com.devatrii.bookify.databinding.ItemBodBinding
 import com.devatrii.bookify.databinding.ItemHomeBinding
 
@@ -29,8 +32,14 @@ class HomeAdapter(val list: ArrayList<HomeModel>, val context: Context) :
                     // handle here
                     Intent().apply {
                         putExtra("book_list",model.booksList)
+                        putExtra("cat_title",model.catTitle)
                         setClass(context, ActivityCategory::class.java)
-                        context.startActivity(this)
+                        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            context as Activity,
+                            mRvChildCat,
+                            mRvChildCat.transitionName
+                        )
+                        context.startActivity(this, options.toBundle())
                     }
                 }
             }
@@ -55,6 +64,16 @@ class HomeAdapter(val list: ArrayList<HomeModel>, val context: Context) :
                     mBookImage.loadOnline(image)
                     mReadTodayBook.setOnClickListener {
                         // handle on click later
+                        Intent().apply {
+                            putExtra("book_model", model.bod)
+                            setClass(context, DetailsActivity::class.java)
+                            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                context as Activity,
+                                mBookImage,
+                                mBookImage.transitionName
+                            )
+                            context.startActivity(this, options.toBundle())
+                        }
                     }
                 }
 

@@ -1,10 +1,13 @@
 package com.devatrii.bookify.Views.Activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.devatrii.bookify.Adapters.CategoryAdapter
 import com.devatrii.bookify.Models.BooksModel
 import com.devatrii.bookify.databinding.ActivityCategoryBinding
+
 
 class ActivityCategory : AppCompatActivity() {
     private val activity = this
@@ -19,10 +22,21 @@ class ActivityCategory : AppCompatActivity() {
         binding.apply {
             mRVCats.adapter = adapter
             val booksList = intent.getSerializableExtra("book_list") as ArrayList<BooksModel>
+            val title = intent.getStringExtra("cat_title").toString()
+            supportActionBar?.title = title
             booksList.forEach {
                 list.add(it)
                 adapter.notifyItemChanged(list.size)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        with(window){
+            sharedElementReturnTransition = null
+            sharedElementReenterTransition = null
+        }
+        binding.mRVCats.transitionName = null
     }
 }

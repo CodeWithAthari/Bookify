@@ -1,9 +1,12 @@
 package com.devatrii.bookify.Views.Activities
 
 import android.os.Bundle
+import android.transition.Explode
+import android.transition.Slide
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.devatrii.bookify.Adapters.HomeAdapter
 import com.devatrii.bookify.Models.HomeModel
 import com.devatrii.bookify.Repository.BookRepo
@@ -17,16 +20,12 @@ import com.devatrii.bookify.ViewModels.MainViewModel
 import com.devatrii.bookify.ViewModels.MainViewModelFactory
 import com.devatrii.bookify.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     lateinit var binding: ActivityMainBinding
     val activity = this
     var list: ArrayList<HomeModel> = ArrayList()
     val adapter = HomeAdapter(list, activity)
-
-    val sample_image =
-        "https://files.instapdf.in/wp-content/uploads/pdf-thumbnails/2021/04/small/rich-dad-poor-dad-436.webp"
 
     private val mainRepo by lazy {
         MainRepo(activity)
@@ -42,18 +41,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             mRecyclerViewHome.adapter = adapter
+            mRecyclerViewHome.onScroll()
             handleBackend()
 
             mError.mTryAgain.setOnClickListener {
                 viewModel.getHomeData()
             }
-
-
-
-
-
-
-
 
 
         }
@@ -89,5 +82,24 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun RecyclerView.onScroll() {
+        val state = IntArray(1)
+        addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                state[0] = newState
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && (state[0] == 0 || state[0] == 2)) {
+                    supportActionBar?.hide()
+                } else if (dy < -10) {
+                    supportActionBar?.show()
+                }
+            }
+        })
     }
 }

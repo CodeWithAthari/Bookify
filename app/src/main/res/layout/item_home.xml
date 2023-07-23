@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="Books"
         android:orientation="horizontal"
+        android:transitionName="BooksRvTrans"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

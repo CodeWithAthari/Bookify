@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.devatrii.bookify.Models.BooksModel
 import com.devatrii.bookify.Repository.BookRepo
@@ -79,6 +80,7 @@ class DetailsActivity : AppCompatActivity() {
                         is FirebaseResponse.Error -> {
                             Log.e(TAG, "onCreate: Error ${it.errorMessage}")
                             dialog.dismiss()
+                            Toast.makeText(activity,"${it.errorMessage}",Toast.LENGTH_SHORT).show()
                         }
 
                         is FirebaseResponse.Loading -> {
