@@ -1,8 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
-
+apply plugin: 'com.google.gms.google-services'
+// key pass:
 android {
     namespace 'com.devatrii.bookify'
     compileSdk 33
@@ -45,4 +47,27 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+
+    implementation platform('com.google.firebase:firebase-bom:32.1.1')
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    def lifecycle_version = "2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    def lottieVersion = "6.1.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    implementation 'com.github.mckrpk:AnimatedProgressBar:0.1.0'
+
 }

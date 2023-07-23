@@ -12,13 +12,16 @@
         android:theme="@style/Theme.Bookify"
         tools:targetApi="31">
         <activity
-            android:name=".PdfActivity"
+            android:name=".Views.Activities.ActivityCategory"
             android:exported="false" />
         <activity
-            android:name=".DetailsActivity"
+            android:name=".Views.Activities.PdfActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Views.Activities.DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
