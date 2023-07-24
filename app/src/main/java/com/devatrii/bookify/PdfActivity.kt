@@ -1,5 +1,6 @@
 package com.devatrii.bookify
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -17,7 +18,7 @@ class PdfActivity : AppCompatActivity() {
 
         binding.apply {
             val bookPDF = intent.getStringExtra("book_pdf").toString()
-            pdfView.fromAsset(bookPDF)
+            pdfView.fromUri(Uri.parse(bookPDF))
                 .swipeHorizontal(true)
                 .enableSwipe(true)
                 .pageSnap(true)
