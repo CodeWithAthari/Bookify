@@ -1,6 +1,6 @@
 
 # Bookify
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Rh-Nhsd2g8w/maxresdefault.jpg)](https://youtu.be/Cy3zhPwPNPo)
+[![PDF Book App Tutorial](https://img.youtube.com/vi/Rh-Nhsd2g8w/maxresdefault.jpg)](https://youtu.be/Rh-Nhsd2g8w)
 
 Here is list of dependencies you can use
 ``` gradle
