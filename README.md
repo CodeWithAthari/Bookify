@@ -60,3 +60,12 @@ Here are the credits & learning material
 - Github
     - [GitHub - FlutterEbookApp](https://github.com/JideGuru/FlutterEbookApp/tree/master)
     - [GitHub - SpringScrollHelper.kt](https://github.com/KaustubhPatange/android-animation-samples/blob/master/SpringBack-RecyclerView/app/src/main/java/com/kpstv/dampingrecyclerview/ui/helpers/SpringScrollHelper.kt)
+ 
+
+## My Socials
+
+You can give my socials a try
+
+[Instagram 📷](https://www.instagram.com/athar_android/)
+[Github 👨‍💻](https://github.com/CodeWithAthari) 
+[Twitter 💬](https://twitter.com/ZamanAthari)
