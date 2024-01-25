@@ -9,9 +9,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mRvHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/mBannerAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,7 @@
 
         <include layout="@layout/layout_loading" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/mErrorHolder"
         android:layout_width="match_parent"
@@ -45,8 +46,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5">
 
-        <include layout="@layout/layout_error"
+        <include
             android:id="@+id/mErrorLayout"
-            />
+            layout="@layout/layout_error" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mBannerAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

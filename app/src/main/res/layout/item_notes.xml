@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end">
+
+
+    <TextView
+        android:id="@+id/mNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/txt_shape"
+        android:padding="8dp"
+        android:text="@string/description_1"
+        android:textColor="@color/black" />
+
+</LinearLayout>

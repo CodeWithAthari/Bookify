@@ -14,6 +14,7 @@ import com.devatrii.bookify.Models.HomeModel
 import com.devatrii.bookify.Repository.MainRepo
 import com.devatrii.bookify.Utils.MyResponses
 import com.devatrii.bookify.Utils.SpringScrollHelper
+import com.devatrii.bookify.Utils.loadBannerAd
 import com.devatrii.bookify.Utils.removeWithAnim
 import com.devatrii.bookify.Utils.showWithAnim
 import com.devatrii.bookify.ViewModels.MainViewModel
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
+            mBannerAd.loadBannerAd()
             mRvHome.adapter = adapter
             SpringScrollHelper().attachToRecyclerView(mRvHome)
             viewModel.getHomeData()

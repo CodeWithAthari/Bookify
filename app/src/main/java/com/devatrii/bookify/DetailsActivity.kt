@@ -6,13 +6,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.devatrii.bookify.Models.BooksModel
 import com.devatrii.bookify.Repository.BookRepo
 import com.devatrii.bookify.Utils.MyResponses
+import com.devatrii.bookify.Utils.loadAndShowInterstitialAdWithProgressDialog
 import com.devatrii.bookify.Utils.loadOnline
 import com.devatrii.bookify.ViewModels.BookViewModel
 import com.devatrii.bookify.ViewModels.BookViewModelFactory
@@ -81,13 +82,17 @@ class DetailsActivity : AppCompatActivity() {
                     }
 
                     is MyResponses.Success -> {
-                        dialog.dismiss()
-                        Log.i(TAG, "onCreate: Downloaded ${it.data}")
-                        Intent().apply {
-                            putExtra("book_pdf", it.data?.filePath)
-                            setClass(activity, PdfActivity::class.java)
-                            startActivity(this)
-                        }
+                        activity.loadAndShowInterstitialAdWithProgressDialog(customCode = {
+                            dialog.dismiss()
+                            Log.i(TAG, "onCreate: Downloaded ${it.data}")
+                            Intent().apply {
+                                putExtra("book_pdf", it.data?.filePath)
+                                putExtra("book_id", "${bookModel.title}_${bookModel.author}")
+                                setClass(activity, PdfActivity::class.java)
+                                startActivity(this)
+                            }
+                        })
+
                     }
                 }
             }
